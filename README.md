@@ -17,7 +17,9 @@ Open `http://localhost:5173`.
 - Strategy selection
 - Career ranks from beginner to professional creator
 - Weekly AI subscription economy
+- Real 2026-flavored AI stack names: GPT-5.4, Claude Opus 4.1, Midjourney V8.1, Gemini/Veo, n8n
 - AI credits required for content generation
+- Daily market trend bonuses
 - Skill upgrades and rank-gated agents
 - Random events with Ukrainian humor
 - Basic economy: money, hype, reputation, energy, XP, level

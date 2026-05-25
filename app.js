@@ -7,8 +7,9 @@ if (tg) {
   tg.setBackgroundColor("#eef1e7");
 }
 
-const storeKey = "ai-creator-save-v2";
+const storeKey = "ai-creator-save-v3";
 const legacyStoreKey = "ai-creator-save-v1";
+const previousStoreKey = "ai-creator-save-v2";
 
 const api = {
   playerId: localStorage.getItem("ai-creator-player-id") || "",
@@ -25,71 +26,80 @@ const ranks = [
   {
     id: "freelancer",
     title: "Фрилансер на нейронках",
-    min: 180,
+    min: 450,
     copy: "Ти вже знаєш, що без підписок контент сам себе не згенерує."
   },
   {
     id: "creator",
     title: "AI-креатор",
-    min: 430,
+    min: 1400,
     copy: "Портфоліо починає продавати краще, ніж твій голосовий клієнту."
   },
   {
     id: "producer",
     title: "AI-продюсер",
-    min: 780,
+    min: 3200,
     copy: "Ти керуєш пайплайном, а не просто просиш модель зробити красиво."
   },
   {
     id: "studio",
     title: "Міні-студія",
-    min: 1240,
+    min: 6200,
     copy: "Агенти, підписки, дедлайни. Майже бізнес, тільки з мемами."
   },
   {
     id: "pro",
     title: "Профі Prompt Empire",
-    min: 1800,
+    min: 10000,
     copy: "Тебе вже кличуть не 'зробити пост', а 'побудувати контент-машину'."
   }
 ];
 
 const subscriptions = [
   {
-    id: "promptbox",
-    name: "PromptBox Basic",
-    cost: 35,
-    credits: 90,
-    unlocks: ["copy", "trend"],
-    quality: 4,
-    desc: "Тексти, промпти, сценарії, перші клієнтські брифи."
-  },
-  {
-    id: "pixelforge",
-    name: "Pixel Forge",
-    cost: 65,
-    credits: 95,
-    unlocks: ["visual", "brand"],
-    quality: 7,
-    desc: "Зображення, каруселі, бренд-візуали і той самий 'преміум'."
-  },
-  {
-    id: "motionlab",
-    name: "Motion Lab",
+    id: "gpt54",
+    name: "GPT-5.4 Studio",
     cost: 95,
-    credits: 110,
+    credits: 65,
+    unlocks: ["copy", "trend"],
+    quality: 7,
+    desc: "Стратегія, тексти, сценарії, складні промпти і клієнтські 'а можна ще 3 варіанти'."
+  },
+  {
+    id: "claude41",
+    name: "Claude Opus 4.1",
+    cost: 90,
+    credits: 55,
+    unlocks: ["copy", "automation"],
+    quality: 8,
+    desc: "Лонгрид, логіка, чисті брифи і тексти, які не звучать як пластик."
+  },
+  {
+    id: "midjourney81",
+    name: "Midjourney V8.1",
+    cost: 85,
+    credits: 55,
+    unlocks: ["visual", "brand"],
+    quality: 9,
+    desc: "Візуали, каруселі, moodboard, бренд-сцени і картинка, яку клієнт одразу показує команді."
+  },
+  {
+    id: "gemini",
+    name: "Gemini + Veo Stack",
+    cost: 110,
+    credits: 70,
     unlocks: ["video"],
     quality: 10,
-    desc: "Короткі відео, рілси, заставки, анімації для клієнтів без терпіння."
+    desc: "Відео, ресерч, мультимодальні задачі і моменти, де тексту вже мало."
   },
   {
-    id: "agentcloud",
-    name: "Agent Cloud",
-    cost: 80,
-    credits: 70,
+    id: "n8n",
+    name: "n8n + Agent Cloud",
+    cost: 75,
+    credits: 40,
     unlocks: ["automation"],
-    quality: 6,
-    desc: "Автоматизації, AI-агенти, воронки і нічні задачі без ручного копіпасту."
+    quality: 5,
+    desc: "Автоматизації, агенти, воронки і той солодкий момент, коли рутина клікає сама."
   }
 ];
 
@@ -98,14 +108,14 @@ const contentTypes = [
     id: "trend",
     name: "Трендовий пост",
     kind: "trend",
-    requiredSub: "promptbox",
+    requiredSub: "gpt54",
     minLevel: 1,
-    credits: 18,
+    credits: 14,
     energy: 12,
-    basePayout: 80,
-    rep: 4,
-    hype: 15,
-    xp: 18,
+    basePayout: 55,
+    rep: 2,
+    hype: 8,
+    xp: 9,
     risk: 0.18,
     desc: "Швидкий контент, який або залетить, або стане скріном у чаті конкурентів."
   },
@@ -113,14 +123,14 @@ const contentTypes = [
     id: "copy",
     name: "Продажний лендінг",
     kind: "copy",
-    requiredSub: "promptbox",
+    requiredSub: "gpt54",
     minLevel: 2,
-    credits: 26,
+    credits: 24,
     energy: 16,
-    basePayout: 135,
-    rep: 8,
-    hype: 5,
-    xp: 24,
+    basePayout: 105,
+    rep: 5,
+    hype: 3,
+    xp: 14,
     risk: 0.14,
     desc: "Копірайтинг, офер, структура. Клієнт хоче 'як Apple', бюджет як на піцу."
   },
@@ -128,14 +138,14 @@ const contentTypes = [
     id: "visual",
     name: "Візуальна карусель",
     kind: "visual",
-    requiredSub: "pixelforge",
+    requiredSub: "midjourney81",
     minLevel: 2,
-    credits: 34,
+    credits: 32,
     energy: 18,
-    basePayout: 170,
-    rep: 10,
-    hype: 12,
-    xp: 30,
+    basePayout: 135,
+    rep: 6,
+    hype: 7,
+    xp: 18,
     risk: 0.16,
     desc: "Карусель для Telegram/Instagram з нормальним ритмом, а не 12 однакових карток."
   },
@@ -143,14 +153,14 @@ const contentTypes = [
     id: "brand",
     name: "AI-брендпак",
     kind: "brand",
-    requiredSub: "pixelforge",
+    requiredSub: "midjourney81",
     minLevel: 3,
-    credits: 46,
+    credits: 44,
     energy: 24,
-    basePayout: 260,
-    rep: 18,
-    hype: 8,
-    xp: 42,
+    basePayout: 220,
+    rep: 10,
+    hype: 5,
+    xp: 28,
     risk: 0.2,
     desc: "Лого-напрям, палітра, візуальний світ. Дорого, але правки теж дорогі."
   },
@@ -158,14 +168,14 @@ const contentTypes = [
     id: "video",
     name: "AI-відео 15 секунд",
     kind: "video",
-    requiredSub: "motionlab",
+    requiredSub: "gemini",
     minLevel: 4,
-    credits: 58,
+    credits: 56,
     energy: 28,
-    basePayout: 360,
-    rep: 20,
-    hype: 26,
-    xp: 56,
+    basePayout: 310,
+    rep: 12,
+    hype: 14,
+    xp: 36,
     risk: 0.26,
     desc: "Відео, де рука має залишитись рукою, а не стати бізнес-рішенням."
   },
@@ -173,14 +183,14 @@ const contentTypes = [
     id: "automation",
     name: "AI-воронка з агентом",
     kind: "automation",
-    requiredSub: "agentcloud",
+    requiredSub: "n8n",
     minLevel: 5,
-    credits: 62,
+    credits: 58,
     energy: 30,
-    basePayout: 440,
-    rep: 28,
-    hype: 14,
-    xp: 70,
+    basePayout: 380,
+    rep: 16,
+    hype: 8,
+    xp: 44,
     risk: 0.22,
     desc: "Бот, сценарій, автоворонка. Якщо працює з першого разу, це майже містика."
   }
@@ -190,8 +200,8 @@ const strategies = {
   fast: {
     label: "Швидко в тренд",
     payout: 0.92,
-    hype: 11,
-    rep: -2,
+    hype: 5,
+    rep: -3,
     energy: -3,
     risk: 0.12,
     quality: -5
@@ -199,8 +209,8 @@ const strategies = {
   taste: {
     label: "Зробити зі смаком",
     payout: 1.08,
-    hype: 2,
-    rep: 10,
+    hype: 1,
+    rep: 5,
     energy: 3,
     risk: -0.1,
     quality: 10
@@ -208,8 +218,8 @@ const strategies = {
   auto: {
     label: "Автоматизувати пайплайн",
     payout: 1,
-    hype: 4,
-    rep: 4,
+    hype: 2,
+    rep: 2,
     energy: 8,
     risk: -0.04,
     quality: 2
@@ -221,29 +231,29 @@ const upgrades = [
     id: "prompting",
     name: "Prompting",
     desc: "Менше галюцинацій, більше керованого результату.",
-    baseCost: 120,
-    max: 5
+    baseCost: 260,
+    max: 8
   },
   {
     id: "taste",
     name: "Taste",
     desc: "Піднімає якість і репутацію, прибирає зайву 'нейромагію'.",
-    baseCost: 140,
-    max: 5
+    baseCost: 300,
+    max: 8
   },
   {
     id: "marketing",
     name: "Marketing",
     desc: "Краще продає контент, додає hype і гроші.",
-    baseCost: 130,
-    max: 5
+    baseCost: 280,
+    max: 8
   },
   {
     id: "ops",
     name: "Ops",
     desc: "Знижує витрати енергії і ризик дедлайнів.",
-    baseCost: 150,
-    max: 5
+    baseCost: 320,
+    max: 8
   }
 ];
 
@@ -252,7 +262,7 @@ const agents = [
     id: "brief-cleaner",
     name: "Brief Cleaner",
     desc: "-8% ризику. Перекладає 'зроби вау' людською мовою.",
-    cost: 360,
+    cost: 900,
     minRank: "freelancer",
     bonus: { risk: -0.08 }
   },
@@ -260,7 +270,7 @@ const agents = [
     id: "taste-director",
     name: "Taste Director",
     desc: "+8 якості. Не дає інтерфейсу виглядати як презентація з 2019.",
-    cost: 520,
+    cost: 1400,
     minRank: "creator",
     bonus: { quality: 8 }
   },
@@ -268,7 +278,7 @@ const agents = [
     id: "sales-agent",
     name: "Sales Agent",
     desc: "+14% до виплат. Інвойс летить швидше за правки.",
-    cost: 680,
+    cost: 1900,
     minRank: "producer",
     bonus: { payout: 0.14 }
   },
@@ -276,27 +286,42 @@ const agents = [
     id: "ops-agent",
     name: "Ops Agent",
     desc: "-6 енергії за складні задачі. Пам'ятає, де лежить дедлайн.",
-    cost: 760,
+    cost: 2300,
     minRank: "studio",
     bonus: { energy: 6 }
   }
 ];
 
 const trends = [
-  "У 2026 клієнти хочуть AI-агента, але спершу питають, чи можна без підписки.",
-  "Короткі відео знову перемогли лонгріди. Лонгріди перейменувались у каруселі.",
-  "Prompt engineer став AI creative director і тепер продає не промпти, а спокій.",
-  "Ринок любить швидкість, але платить за результат, який не соромно показати мамі.",
-  "Найкращий moat тижня: нормальна документація і своєчасно сплачена підписка."
+  {
+    kind: "automation",
+    text: "AI-агенти в тренді: клієнти хочуть, щоб рутина сама соромилась існувати."
+  },
+  {
+    kind: "video",
+    text: "Короткі AI-відео знову вистрілили. Усі хочуть 15 секунд, які виглядають як бюджет Netflix."
+  },
+  {
+    kind: "copy",
+    text: "Ринок втомився від 'інноваційних рішень'. Перемагає людський текст і сильний офер."
+  },
+  {
+    kind: "visual",
+    text: "Каруселі повернулись: тепер це не слайди, а 'мікро-продуктова історія'."
+  },
+  {
+    kind: "brand",
+    text: "AI-стартапи масово ребрендяться, бо попередній логотип зробили за 8 хвилин."
+  }
 ];
 
 const events = [
   {
     title: "Алгоритм прокинувся",
     text: "Платформа раптом вирішила показати твій контент людям, а не лише трьом знайомим.",
-    money: 40,
-    hype: 10,
-    rep: 2
+    money: 25,
+    hype: 5,
+    rep: 1
   },
   {
     title: "Клієнт приніс голосове",
@@ -311,7 +336,7 @@ const events = [
     text: "Ти знайшов приклад, і вся команда зробила вигляд, що так і бачила з початку.",
     money: 30,
     hype: 3,
-    rep: 5
+    rep: 3
   },
   {
     title: "Модель впевнено вигадала функцію",
@@ -390,13 +415,13 @@ const defaultCharacter = {
 };
 
 const defaultState = {
-  version: 2,
+  version: 3,
   day: 1,
   week: 1,
-  money: 220,
-  credits: 40,
-  hype: 8,
-  rep: 6,
+  money: 260,
+  credits: 30,
+  hype: 3,
+  rep: 2,
   energy: 100,
   xp: 0,
   level: 1,
@@ -407,10 +432,11 @@ const defaultState = {
   ownedAgents: [],
   skills: { prompting: 1, taste: 1, marketing: 1, ops: 1 },
   character: { ...defaultCharacter },
+  avatarEditorOpen: false,
   feed: [
     {
       title: "Старт студії",
-      text: "У тебе $220, 40 AI-кредитів і велика віра, що підписки окупляться до кінця тижня."
+      text: "У тебе $260, 30 AI-кредитів і нуль права купити всі підписки одразу. Обирай стек розумно."
     }
   ]
 };
@@ -451,7 +477,9 @@ const els = {
   restButton: document.querySelector("#restButton"),
   resetButton: document.querySelector("#resetButton"),
   randomAvatarButton: document.querySelector("#randomAvatarButton"),
+  avatarToggleButton: document.querySelector("#avatarToggleButton"),
   customizerGrid: document.querySelector("#customizerGrid"),
+  customizerPanel: document.querySelector("#customizerPanel"),
   avatarSummary: document.querySelector("#avatarSummary"),
   avatarBody: document.querySelector("#avatarBody"),
   avatarJacket: document.querySelector("#avatarJacket"),
@@ -466,7 +494,7 @@ const els = {
 };
 
 function loadState() {
-  const saved = safeParse(localStorage.getItem(storeKey)) || safeParse(localStorage.getItem(legacyStoreKey));
+  const saved = safeParse(localStorage.getItem(storeKey)) || safeParse(localStorage.getItem(previousStoreKey)) || safeParse(localStorage.getItem(legacyStoreKey));
   return normalizeState(saved || {});
 }
 
@@ -482,7 +510,25 @@ function normalizeState(saved) {
     feed: Array.isArray(saved.feed) && saved.feed.length ? saved.feed : [...defaultState.feed]
   };
 
-  merged.version = 2;
+  if (saved.version !== 3) {
+    merged.day = 1;
+    merged.week = 1;
+    merged.money = defaultState.money;
+    merged.credits = defaultState.credits;
+    merged.hype = defaultState.hype;
+    merged.rep = defaultState.rep;
+    merged.energy = defaultState.energy;
+    merged.xp = 0;
+    merged.level = 1;
+    merged.portfolio = 0;
+    merged.activeSubs = [];
+    merged.suspendedSubs = [];
+    merged.ownedAgents = [];
+    merged.skills = { ...defaultState.skills };
+    merged.feed = [...defaultState.feed];
+  }
+
+  merged.version = 3;
   merged.money = Math.max(0, Number(merged.money) || 0);
   merged.credits = Math.max(0, Number(merged.credits) || 0);
   merged.hype = Math.max(0, Number(merged.hype) || 0);
@@ -530,6 +576,10 @@ function selectedContent() {
   return contentTypes.find((content) => content.id === state.selectedContent) || contentTypes[0];
 }
 
+function currentTrend() {
+  return trends[(state.day - 1) % trends.length];
+}
+
 function subscriptionById(id) {
   return subscriptions.find((sub) => sub.id === id);
 }
@@ -539,7 +589,7 @@ function activeSubscription(id) {
 }
 
 function rankScore() {
-  return Math.round(state.rep * 5 + state.portfolio * 22 + state.level * 38 + state.hype * 1.4);
+  return Math.round(state.rep * 2.2 + state.portfolio * 18 + state.level * 25 + state.hype * 0.55);
 }
 
 function currentRank() {
@@ -587,14 +637,15 @@ function agentBonus() {
 function forecast(content = selectedContent(), strategyKey = selectedStrategy()) {
   const strategy = strategies[strategyKey];
   const agents = agentBonus();
-  const skillQuality = state.skills.prompting * 5 + state.skills.taste * 6 + state.skills.marketing * 3;
-  const base = 36 + state.level * 3 + subscriptionQuality() + skillQuality + agents.quality + strategy.quality;
+  const trendMatch = currentTrend().kind === content.kind;
+  const skillQuality = state.skills.prompting * 3 + state.skills.taste * 4 + state.skills.marketing * 1.5;
+  const base = 26 + state.level * 1.5 + subscriptionQuality() + skillQuality + agents.quality + strategy.quality + (trendMatch ? 9 : 0);
   const quality = clamp(Math.round(base - content.risk * 18), 5, 100);
   const risk = clamp(content.risk + strategy.risk - state.skills.prompting * 0.025 - state.skills.ops * 0.03 + agents.risk, 0.04, 0.55);
-  const payout = Math.round(content.basePayout * strategy.payout * (1 + state.skills.marketing * 0.045 + agents.payout));
+  const payout = Math.round(content.basePayout * strategy.payout * (1 + state.skills.marketing * 0.026 + agents.payout + (trendMatch ? 0.18 : 0)));
   const energyCost = Math.max(4, content.energy - strategy.energy - state.skills.ops * 2 - agents.energy);
 
-  return { quality, risk, payout, energyCost };
+  return { quality, risk, payout, energyCost, trendMatch };
 }
 
 function canCreate(content = selectedContent()) {
@@ -707,7 +758,7 @@ function shipProject() {
     const loss = Math.round(result.payout * 0.28);
     applyDelta({
       money: Math.round(result.payout * 0.35) - loss,
-      hype: Math.max(0, Math.round(content.hype * 0.35 + strategy.hype)),
+      hype: Math.max(0, Math.round(content.hype * 0.25 + strategy.hype)),
       rep: -Math.max(2, Math.round(content.rep * 0.35)),
       xp: Math.round(content.xp * 0.55)
     });
@@ -715,13 +766,13 @@ function shipProject() {
   } else {
     applyDelta({
       money: result.payout + event.money,
-      hype: content.hype + strategy.hype + event.hype + state.skills.marketing * 2,
+      hype: content.hype + strategy.hype + event.hype + Math.floor(state.skills.marketing * 1.2) + (result.trendMatch ? 6 : 0),
       rep: content.rep + strategy.rep + event.rep + qualityBonus,
       energy: event.energy || 0,
-      portfolio: 1,
+      portfolio: result.quality >= 68 ? 1 : 0,
       xp: content.xp + qualityBonus
     });
-    pushEvent("Проєкт здано", `${content.name}: ${formatMoney(result.payout)} доходу, якість ${result.quality}%. ${event.text}`);
+    pushEvent("Проєкт здано", `${content.name}: ${formatMoney(result.payout)} доходу, якість ${result.quality}%. ${result.trendMatch ? "Тренд дня підсилив охоплення. " : ""}${event.text}`);
   }
 
   advanceDay();
@@ -775,7 +826,7 @@ function buyUpgrade(id) {
 }
 
 function upgradeCost(upgrade, current) {
-  return Math.round(upgrade.baseCost * (1 + current * 0.72));
+  return Math.round(upgrade.baseCost * (1 + current * 0.95));
 }
 
 function buyAgent(agentId) {
@@ -836,6 +887,12 @@ function randomizeCharacter() {
   pushEvent("Новий образ", "Персонаж оновив стиль. Тепер можна брати дорожче за консультацію.");
   saveState();
   render();
+}
+
+function toggleAvatarEditor() {
+  state.avatarEditorOpen = !state.avatarEditorOpen;
+  saveState();
+  renderCharacter();
 }
 
 async function requestJson(path, options = {}) {
@@ -929,13 +986,15 @@ function renderContentOptions() {
   contentTypes.forEach((content) => {
     const check = canCreate(content);
     const sub = subscriptionById(content.requiredSub);
+    const hot = currentTrend().kind === content.kind;
     const label = document.createElement("label");
     label.className = "content-option";
+    label.dataset.hot = String(hot);
     label.dataset.locked = String(!check.ok && state.selectedContent !== content.id);
     label.innerHTML = `
       <input type="radio" name="content" value="${content.id}" ${state.selectedContent === content.id ? "checked" : ""} />
       <span>
-        <strong>${content.name}</strong>
+        <strong>${content.name}${hot ? " · тренд" : ""}</strong>
         <small>${content.desc}</small>
         <em>${content.credits} кредитів · ${content.energy} енергії · ${formatMoney(content.basePayout)} база · ${sub.name}</em>
       </span>
@@ -1094,6 +1153,8 @@ function renderCharacter() {
   const accessory = state.character.accessory;
 
   els.avatarSummary.textContent = `${gender}, ${hairStyle}`;
+  els.customizerPanel.dataset.open = String(Boolean(state.avatarEditorOpen));
+  els.avatarToggleButton.textContent = state.avatarEditorOpen ? "Сховати" : "Стиль";
   els.avatarHead.style.fill = skin;
   els.avatarNeck.style.fill = skin;
   els.avatarBody.style.fill = outfit;
@@ -1141,7 +1202,7 @@ function render() {
   const result = forecast(content);
   const check = canCreate(content);
 
-  els.trendText.textContent = trends[(state.day - 1) % trends.length];
+  els.trendText.textContent = currentTrend().text;
   els.missionTitle.textContent = content.name;
   els.missionCopy.textContent = content.desc;
   els.dayLabel.textContent = `День ${state.day} · Тиждень ${state.week}`;
@@ -1172,6 +1233,7 @@ els.shipButton.addEventListener("click", shipProject);
 els.restButton.addEventListener("click", rest);
 els.resetButton.addEventListener("click", resetGame);
 els.randomAvatarButton.addEventListener("click", randomizeCharacter);
+els.avatarToggleButton.addEventListener("click", toggleAvatarEditor);
 document.querySelectorAll("input[name='strategy']").forEach((input) => {
   input.addEventListener("change", render);
 });

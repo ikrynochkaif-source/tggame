@@ -1,17 +1,19 @@
 :root {
   color-scheme: light;
-  --bg: oklch(94% 0.015 103);
-  --surface: oklch(98% 0.012 103);
-  --surface-2: oklch(90% 0.02 103);
-  --ink: oklch(24% 0.025 111);
-  --muted: oklch(49% 0.025 111);
-  --line: oklch(82% 0.026 103);
-  --accent: oklch(58% 0.14 153);
-  --accent-ink: oklch(18% 0.035 153);
-  --danger: oklch(60% 0.14 28);
-  --warn: oklch(73% 0.13 78);
-  --info: oklch(56% 0.12 248);
-  --shadow: 0 20px 60px oklch(32% 0.02 103 / 0.12);
+  --bg: oklch(93% 0.018 116);
+  --surface: oklch(98% 0.014 108);
+  --surface-2: oklch(91% 0.026 150);
+  --ink: oklch(20% 0.03 126);
+  --muted: oklch(47% 0.026 126);
+  --line: oklch(80% 0.034 116);
+  --accent: oklch(62% 0.17 153);
+  --accent-ink: oklch(16% 0.035 153);
+  --danger: oklch(59% 0.18 24);
+  --warn: oklch(74% 0.15 82);
+  --info: oklch(60% 0.15 232);
+  --violet: oklch(56% 0.17 294);
+  --coral: oklch(67% 0.17 33);
+  --shadow: 0 16px 42px oklch(30% 0.035 126 / 0.11);
 }
 
 * {
@@ -21,8 +23,9 @@
 html {
   min-height: 100%;
   background:
-    radial-gradient(circle at 18% 0%, oklch(88% 0.06 153 / 0.72), transparent 26rem),
-    linear-gradient(135deg, oklch(94% 0.015 103), oklch(91% 0.02 73));
+    radial-gradient(circle at 12% 2%, oklch(83% 0.09 153 / 0.72), transparent 18rem),
+    radial-gradient(circle at 90% 8%, oklch(79% 0.11 33 / 0.5), transparent 15rem),
+    linear-gradient(135deg, var(--bg), oklch(89% 0.018 80));
 }
 
 body {
@@ -45,7 +48,7 @@ button {
 .app-shell {
   width: min(1180px, 100%);
   margin: 0 auto;
-  padding: 18px;
+  padding: 12px;
 }
 
 .topbar,
@@ -63,7 +66,7 @@ button {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 8px 0 16px;
+  padding: 6px 0 12px;
 }
 
 .identity {
@@ -79,9 +82,9 @@ button {
   height: 48px;
   place-items: center;
   border: 1px solid oklch(35% 0.06 153);
-  border-radius: 8px;
-  background: oklch(24% 0.035 153);
-  color: oklch(91% 0.08 153);
+  border-radius: 14px;
+  background: linear-gradient(135deg, oklch(22% 0.04 153), oklch(30% 0.07 294));
+  color: oklch(93% 0.08 153);
   font-weight: 900;
 }
 
@@ -117,7 +120,7 @@ h2 {
   align-items: center;
   gap: 10px;
   margin-bottom: 14px;
-  padding: 12px 14px;
+  padding: 10px 12px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: oklch(98% 0.012 103 / 0.82);
@@ -142,7 +145,7 @@ h2 {
   gap: 18px;
   align-items: center;
   margin-bottom: 14px;
-  padding: 16px 18px;
+  padding: 14px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--surface);
@@ -175,8 +178,8 @@ h2 {
 
 .creator-studio {
   display: grid;
-  grid-template-columns: 330px minmax(0, 1fr);
-  gap: 14px;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 12px;
   margin-bottom: 14px;
 }
 
@@ -190,8 +193,8 @@ h2 {
 .avatar-panel,
 .customizer-panel {
   border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--surface);
+  border-radius: 16px;
+  background: oklch(98% 0.014 108 / 0.94);
   box-shadow: var(--shadow);
 }
 
@@ -203,20 +206,33 @@ h2 {
   padding: 18px;
 }
 
+.avatar-actions {
+  display: flex;
+  gap: 7px;
+}
+
 .avatar-stage {
   display: grid;
-  min-height: 300px;
+  min-height: 176px;
   place-items: center;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 14px;
   background:
     linear-gradient(135deg, oklch(93% 0.022 153), oklch(95% 0.018 78)),
     var(--surface-2);
 }
 
 .avatar-preview {
-  width: min(260px, 100%);
+  width: min(150px, 100%);
   height: auto;
+}
+
+.customizer-panel {
+  display: none;
+}
+
+.customizer-panel[data-open="true"] {
+  display: block;
 }
 
 .avatar-backdrop {
@@ -411,7 +427,7 @@ h2 {
 
 .meter-track {
   overflow: hidden;
-  height: 12px;
+  height: 10px;
   border: 1px solid oklch(78% 0.025 103);
   border-radius: 999px;
   background: oklch(86% 0.018 103);
@@ -456,15 +472,15 @@ h2 {
   align-items: start;
   padding: 12px;
   border: 1px solid var(--line);
-  border-radius: 8px;
-  background: oklch(96% 0.012 103);
+  border-radius: 12px;
+  background: oklch(96% 0.012 108);
   transition: border-color 180ms cubic-bezier(0.22, 1, 0.36, 1), transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .strategy-list label:has(input:checked),
 .content-option:has(input:checked) {
   border-color: oklch(61% 0.12 153);
-  background: oklch(92% 0.045 153);
+  background: linear-gradient(135deg, oklch(92% 0.045 153), oklch(94% 0.032 82));
 }
 
 .strategy-list label:hover,
@@ -507,10 +523,18 @@ h2 {
   opacity: 0.7;
 }
 
+.content-option[data-hot="true"] {
+  border-color: var(--coral);
+}
+
+.content-option[data-hot="true"] em {
+  color: oklch(45% 0.11 33);
+}
+
 .primary-button,
 .ghost-button {
   min-height: 40px;
-  border-radius: 8px;
+  border-radius: 12px;
   font-weight: 850;
   transition: transform 160ms cubic-bezier(0.22, 1, 0.36, 1), background-color 160ms cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -518,7 +542,7 @@ h2 {
 .primary-button {
   width: 100%;
   border: 1px solid oklch(43% 0.1 153);
-  background: var(--accent);
+  background: linear-gradient(135deg, var(--accent), var(--warn));
   color: var(--accent-ink);
 }
 
@@ -537,7 +561,7 @@ h2 {
 
 .ghost-button {
   border: 1px solid var(--line);
-  background: oklch(98% 0.012 103);
+  background: oklch(98% 0.012 108);
   color: var(--ink);
   padding: 0 12px;
 }
@@ -582,13 +606,13 @@ h2 {
   align-items: center;
   padding: 12px;
   border: 1px solid var(--line);
-  border-radius: 8px;
-  background: oklch(96% 0.012 103);
+  border-radius: 12px;
+  background: oklch(96% 0.012 108);
 }
 
 .subscription-card[data-active="true"] {
   border-color: oklch(58% 0.12 153);
-  background: oklch(92% 0.045 153);
+  background: linear-gradient(135deg, oklch(92% 0.045 153), oklch(94% 0.032 82));
 }
 
 .subscription-card h3,

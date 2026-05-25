@@ -31,14 +31,15 @@ export async function upsertPlayer(id, patch) {
   const key = String(id);
   const current = db.players[key] || {
     id: key,
+    version: 3,
     name: "AI Creator",
     username: "",
     day: 1,
     week: 1,
-    money: 300,
-    credits: 40,
-    hype: 12,
-    rep: 10,
+    money: 260,
+    credits: 30,
+    hype: 3,
+    rep: 2,
     energy: 100,
     xp: 0,
     level: 1,
@@ -81,12 +82,12 @@ export async function savePlayerState(id, state) {
 
 export function updateLeaderboard(player) {
   const score = Math.round(
-    (player.money || 0) +
-    (player.hype || 0) * 12 +
-    (player.rep || 0) * 10 +
-    (player.level || 1) * 80 +
-    (player.portfolio || 0) * 40 +
-    (player.credits || 0) * 0.4
+    (player.money || 0) * 0.25 +
+    (player.hype || 0) * 4 +
+    (player.rep || 0) * 8 +
+    (player.level || 1) * 65 +
+    (player.portfolio || 0) * 55 +
+    (player.credits || 0) * 0.25
   );
   const existing = db.leaderboard.filter((item) => item.id !== player.id);
 

@@ -41,12 +41,13 @@ The player starts with enough money to activate one basic subscription, but not 
 
 ## Subscriptions
 
-Subscriptions cost money weekly and grant AI credits on renewal.
+Subscriptions cost money weekly and grant AI credits on renewal. The named tools mirror recognizable 2026 AI stacks, but their prices and credits are game balance values, not real invoices.
 
-- PromptBox Basic: unlocks posts and copywriting.
-- Pixel Forge: unlocks visual carousels and brand packs.
-- Motion Lab: unlocks AI video.
-- Agent Cloud: unlocks automation and agents-heavy work.
+- GPT-5.4 Studio: unlocks trend posts and copywriting.
+- Claude Opus 4.1: supports deeper copywriting and automation planning.
+- Midjourney V8.1: unlocks visual carousels and brand packs.
+- Gemini + Veo Stack: unlocks AI video and multimodal work.
+- n8n + Agent Cloud: unlocks automation and agent workflows.
 
 If the player cannot pay a subscription renewal, that subscription is suspended. This prevents infinite generation and makes cash flow matter.
 
@@ -65,6 +66,10 @@ Each job has:
 - Risk
 
 Harder content pays more, but consumes more credits, more energy, and has higher failure risk.
+
+## Market Trend
+
+Each day has a trend focused on one content category. Shipping into the trend grants higher payout, quality, and hype. This adds a light tactical choice: chase the market or build toward a more stable long-term portfolio.
 
 ## Strategies
 
@@ -100,3 +105,4 @@ Agents unlock by career rank and require one-time payment.
 - Subscription renewals can suspend tools if cash is low.
 - Upgrades and agents have scaling costs and rank gates.
 - Leaderboard score includes durable progress, not only current cash.
+- Rank thresholds are intentionally high, so players spend multiple sessions moving from beginner to professional.
