@@ -178,9 +178,10 @@ h2 {
 
 .creator-studio {
   display: grid;
-  grid-template-columns: 260px minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: 12px;
-  margin-bottom: 14px;
+  margin-top: 14px;
+  margin-bottom: 0;
 }
 
 .command-panel,
@@ -211,9 +212,20 @@ h2 {
   gap: 7px;
 }
 
+.avatar-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 132px;
+  gap: 14px;
+  align-items: center;
+}
+
+.avatar-panel .panel-heading {
+  margin-bottom: 0;
+}
+
 .avatar-stage {
   display: grid;
-  min-height: 176px;
+  min-height: 132px;
   place-items: center;
   border: 1px solid var(--line);
   border-radius: 14px;
@@ -223,7 +235,7 @@ h2 {
 }
 
 .avatar-preview {
-  width: min(150px, 100%);
+  width: min(106px, 100%);
   height: auto;
 }
 
@@ -870,6 +882,14 @@ h2 {
   .chip-button,
   .swatch-button {
     min-height: 36px;
+  }
+
+  .avatar-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .avatar-stage {
+    min-height: 124px;
   }
 
   .panel-heading {

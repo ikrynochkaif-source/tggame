@@ -43,57 +43,6 @@
         </div>
       </section>
 
-      <section class="creator-studio" aria-label="Створення персонажа">
-        <article class="avatar-panel">
-          <div class="panel-heading">
-            <div>
-              <p class="eyebrow">Персонаж</p>
-              <h2>Твій AI-креатор</h2>
-            </div>
-            <div class="avatar-actions">
-              <button class="ghost-button small" id="avatarToggleButton" type="button">Стиль</button>
-              <button class="ghost-button small" id="randomAvatarButton" type="button">Рандом</button>
-            </div>
-          </div>
-
-          <div class="avatar-stage">
-            <svg class="avatar-preview" id="avatarPreview" viewBox="0 0 220 260" role="img" aria-label="Прев'ю персонажа">
-              <rect class="avatar-backdrop" x="18" y="18" width="184" height="224" rx="28"></rect>
-              <path class="avatar-shadow" d="M56 233c12-30 31-45 56-45s45 15 56 45H56Z"></path>
-              <path class="avatar-body" id="avatarBody" d="M63 230c7-45 24-68 49-68s42 23 49 68H63Z"></path>
-              <path class="avatar-jacket" id="avatarJacket" d="M73 230c6-35 18-53 39-53s33 18 39 53H73Z"></path>
-              <circle class="avatar-neck" id="avatarNeck" cx="112" cy="154" r="18"></circle>
-              <path class="avatar-head" id="avatarHead" d="M70 105c0-31 18-56 42-56s42 25 42 56c0 34-17 56-42 56s-42-22-42-56Z"></path>
-              <path class="avatar-hair-back" id="avatarHairBack"></path>
-              <path class="avatar-hair" id="avatarHair"></path>
-              <circle class="avatar-eye" cx="96" cy="111" r="4"></circle>
-              <circle class="avatar-eye" cx="128" cy="111" r="4"></circle>
-              <path class="avatar-brow" d="M90 100c5-3 11-3 17 0"></path>
-              <path class="avatar-brow" d="M122 100c5-3 11-3 17 0"></path>
-              <path class="avatar-mouth" id="avatarMouth" d="M100 132c7 6 17 6 24 0"></path>
-              <g class="avatar-glasses" id="avatarGlasses">
-                <circle cx="96" cy="112" r="13"></circle>
-                <circle cx="128" cy="112" r="13"></circle>
-                <path d="M109 112h6"></path>
-              </g>
-              <g class="avatar-earring" id="avatarEarring">
-                <circle cx="154" cy="123" r="4"></circle>
-              </g>
-              <path class="avatar-device" d="M142 198h30c5 0 8 3 8 8v26h-46v-26c0-5 3-8 8-8Z"></path>
-              <circle class="avatar-device-dot" cx="157" cy="213" r="3"></circle>
-            </svg>
-          </div>
-        </article>
-
-        <article class="customizer-panel" id="customizerPanel">
-          <div class="panel-heading compact">
-            <h2>Кастомізація</h2>
-            <span id="avatarSummary"></span>
-          </div>
-          <div class="customizer-grid" id="customizerGrid"></div>
-        </article>
-      </section>
-
       <section class="dashboard">
         <article class="command-panel">
           <div class="panel-heading">
@@ -181,6 +130,57 @@
             </div>
           </div>
         </aside>
+      </section>
+
+      <section class="creator-studio" aria-label="Створення персонажа">
+        <article class="avatar-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Персонаж</p>
+              <h2>Твій AI-креатор</h2>
+            </div>
+            <div class="avatar-actions">
+              <button class="ghost-button small" id="avatarToggleButton" type="button">Стиль</button>
+              <button class="ghost-button small" id="randomAvatarButton" type="button">Рандом</button>
+            </div>
+          </div>
+
+          <div class="avatar-stage">
+            <svg class="avatar-preview" id="avatarPreview" viewBox="0 0 220 260" role="img" aria-label="Прев'ю персонажа">
+              <rect class="avatar-backdrop" x="18" y="18" width="184" height="224" rx="28"></rect>
+              <path class="avatar-shadow" d="M56 233c12-30 31-45 56-45s45 15 56 45H56Z"></path>
+              <path class="avatar-body" id="avatarBody" d="M63 230c7-45 24-68 49-68s42 23 49 68H63Z"></path>
+              <path class="avatar-jacket" id="avatarJacket" d="M73 230c6-35 18-53 39-53s33 18 39 53H73Z"></path>
+              <circle class="avatar-neck" id="avatarNeck" cx="112" cy="154" r="18"></circle>
+              <path class="avatar-head" id="avatarHead" d="M70 105c0-31 18-56 42-56s42 25 42 56c0 34-17 56-42 56s-42-22-42-56Z"></path>
+              <path class="avatar-hair-back" id="avatarHairBack"></path>
+              <path class="avatar-hair" id="avatarHair"></path>
+              <circle class="avatar-eye" cx="96" cy="111" r="4"></circle>
+              <circle class="avatar-eye" cx="128" cy="111" r="4"></circle>
+              <path class="avatar-brow" d="M90 100c5-3 11-3 17 0"></path>
+              <path class="avatar-brow" d="M122 100c5-3 11-3 17 0"></path>
+              <path class="avatar-mouth" id="avatarMouth" d="M100 132c7 6 17 6 24 0"></path>
+              <g class="avatar-glasses" id="avatarGlasses">
+                <circle cx="96" cy="112" r="13"></circle>
+                <circle cx="128" cy="112" r="13"></circle>
+                <path d="M109 112h6"></path>
+              </g>
+              <g class="avatar-earring" id="avatarEarring">
+                <circle cx="154" cy="123" r="4"></circle>
+              </g>
+              <path class="avatar-device" d="M142 198h30c5 0 8 3 8 8v26h-46v-26c0-5 3-8 8-8Z"></path>
+              <circle class="avatar-device-dot" cx="157" cy="213" r="3"></circle>
+            </svg>
+          </div>
+        </article>
+
+        <article class="customizer-panel" id="customizerPanel">
+          <div class="panel-heading compact">
+            <h2>Кастомізація</h2>
+            <span id="avatarSummary"></span>
+          </div>
+          <div class="customizer-grid" id="customizerGrid"></div>
+        </article>
       </section>
 
       <section class="economy-grid">
