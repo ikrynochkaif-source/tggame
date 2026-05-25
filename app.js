@@ -58,7 +58,7 @@ const ranks = [
 const subscriptions = [
   {
     id: "gpt54",
-    name: "GPT-5.4 Studio",
+    name: "GPT-5.5 Studio",
     cost: 95,
     credits: 65,
     unlocks: ["copy", "trend"],

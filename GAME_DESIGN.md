@@ -43,7 +43,7 @@ The player starts with enough money to activate one basic subscription, but not 
 
 Subscriptions cost money weekly and grant AI credits on renewal. The named tools mirror recognizable 2026 AI stacks, but their prices and credits are game balance values, not real invoices.
 
-- GPT-5.4 Studio: unlocks trend posts and copywriting.
+- GPT-5.5 Studio: unlocks trend posts and copywriting.
 - Claude Opus 4.1: supports deeper copywriting and automation planning.
 - Midjourney V8.1: unlocks visual carousels and brand packs.
 - Gemini + Veo Stack: unlocks AI video and multimodal work.
