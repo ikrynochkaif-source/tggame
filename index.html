@@ -22,8 +22,25 @@
       </header>
 
       <section class="ticker" aria-live="polite">
-        <span id="tickerLabel">Тренд дня</span>
+        <span>Тренд дня</span>
         <strong id="trendText"></strong>
+      </section>
+
+      <section class="progression-panel" aria-label="Прогресія">
+        <div>
+          <p class="eyebrow">Кар'єра</p>
+          <h2 id="rankTitle"></h2>
+          <p id="rankCopy"></p>
+        </div>
+        <div class="rank-meter">
+          <div class="meter-row">
+            <span id="nextRankLabel"></span>
+            <strong id="rankScoreValue"></strong>
+          </div>
+          <div class="meter-track">
+            <span id="rankBar"></span>
+          </div>
+        </div>
       </section>
 
       <section class="creator-studio" aria-label="Створення персонажа">
@@ -78,7 +95,7 @@
         <article class="command-panel">
           <div class="panel-heading">
             <div>
-              <p class="eyebrow">Дейлік</p>
+              <p class="eyebrow">Продакшн</p>
               <h2 id="missionTitle"></h2>
             </div>
             <span class="day-pill" id="dayLabel"></span>
@@ -86,44 +103,46 @@
 
           <p class="mission-copy" id="missionCopy"></p>
 
-          <div class="project-meter" aria-label="Прогрес проєкту">
+          <div class="project-meter" aria-label="Очікувана якість">
             <div class="meter-row">
-              <span>Віральність</span>
-              <strong id="viralValue"></strong>
+              <span>Очікуваний результат</span>
+              <strong id="forecastValue"></strong>
             </div>
             <div class="meter-track">
-              <span id="viralBar"></span>
+              <span id="forecastBar"></span>
             </div>
           </div>
+
+          <fieldset class="content-list" id="contentList">
+            <legend>Що створюємо</legend>
+          </fieldset>
 
           <fieldset class="strategy-list">
             <legend>Стратегія ходу</legend>
             <label>
               <input type="radio" name="strategy" value="fast" checked />
               <span>
-                <strong>Залити за 15 хвилин</strong>
-                <small>Більше хайпу, більше шансів на баг з характером.</small>
+                <strong>Швидко в тренд</strong>
+                <small>Більше охоплення, вищий ризик косяка.</small>
               </span>
             </label>
             <label>
               <input type="radio" name="strategy" value="taste" />
               <span>
                 <strong>Зробити зі смаком</strong>
-                <small>Повільніше, зате клієнт може сказати: “о, не соромно”.</small>
+                <small>Більше репутації, менше випадкового хаосу.</small>
               </span>
             </label>
             <label>
               <input type="radio" name="strategy" value="auto" />
               <span>
-                <strong>Автоматизувати все</strong>
-                <small>Агенти працюють, ти робиш вигляд, що це стратегія.</small>
+                <strong>Автоматизувати пайплайн</strong>
+                <small>Економить енергію, але потребує інструментів.</small>
               </span>
             </label>
           </fieldset>
 
-          <button class="primary-button" id="shipButton" type="button">
-            Запустити проєкт
-          </button>
+          <button class="primary-button" id="shipButton" type="button">Згенерувати і здати</button>
         </article>
 
         <aside class="stats-panel" aria-label="Статистика">
@@ -132,12 +151,20 @@
             <strong id="moneyValue"></strong>
           </div>
           <div class="stat-row">
+            <span>AI-кредити</span>
+            <strong id="creditsValue"></strong>
+          </div>
+          <div class="stat-row">
             <span>Hype</span>
             <strong id="hypeValue"></strong>
           </div>
           <div class="stat-row">
             <span>Репутація</span>
             <strong id="repValue"></strong>
+          </div>
+          <div class="stat-row">
+            <span>Портфоліо</span>
+            <strong id="portfolioValue"></strong>
           </div>
           <div class="stat-row">
             <span>Енергія</span>
@@ -151,6 +178,24 @@
             </div>
           </div>
         </aside>
+      </section>
+
+      <section class="economy-grid">
+        <article class="subscriptions-panel">
+          <div class="panel-heading compact">
+            <h2>AI-підписки</h2>
+            <span id="weeklyCostValue"></span>
+          </div>
+          <div class="subscription-list" id="subscriptionList"></div>
+        </article>
+
+        <article class="upgrades-panel">
+          <div class="panel-heading compact">
+            <h2>Прокачка</h2>
+            <span id="skillSummary"></span>
+          </div>
+          <div class="upgrade-list" id="upgradeList"></div>
+        </article>
       </section>
 
       <section class="lower-grid">

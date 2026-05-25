@@ -15,6 +15,10 @@ Open `http://localhost:5173`.
 - Telegram Mini App bootstrap via `telegram-web-app.js`
 - Daily mission loop
 - Strategy selection
+- Career ranks from beginner to professional creator
+- Weekly AI subscription economy
+- AI credits required for content generation
+- Skill upgrades and rank-gated agents
 - Random events with Ukrainian humor
 - Basic economy: money, hype, reputation, energy, XP, level
 - Character creator with gender/style, skin, hair, outfit, and accessories

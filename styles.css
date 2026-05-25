@@ -50,8 +50,10 @@ button {
 
 .topbar,
 .ticker,
+.progression-panel,
 .creator-studio,
 .dashboard,
+.economy-grid,
 .lower-grid {
   width: 100%;
 }
@@ -134,10 +136,41 @@ h2 {
   font-size: 0.92rem;
 }
 
+.progression-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 14px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.progression-panel p:last-child {
+  max-width: 68ch;
+  margin: 6px 0 0;
+  color: var(--muted);
+  line-height: 1.42;
+}
+
+.rank-meter {
+  min-width: 0;
+}
+
 .dashboard {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 310px;
   gap: 14px;
+}
+
+.economy-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 14px;
+  margin-top: 14px;
 }
 
 .creator-studio {
@@ -152,6 +185,8 @@ h2 {
 .feed-panel,
 .agents-panel,
 .leaderboard-panel,
+.subscriptions-panel,
+.upgrades-panel,
 .avatar-panel,
 .customizer-panel {
   border: 1px solid var(--line);
@@ -161,6 +196,8 @@ h2 {
 }
 
 .command-panel,
+.subscriptions-panel,
+.upgrades-panel,
 .avatar-panel,
 .customizer-panel {
   padding: 18px;
@@ -394,7 +431,8 @@ h2 {
   transition: width 210ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.strategy-list {
+.strategy-list,
+.content-list {
   display: grid;
   gap: 8px;
   margin: 0 0 16px;
@@ -402,14 +440,16 @@ h2 {
   border: 0;
 }
 
-.strategy-list legend {
+.strategy-list legend,
+.content-list legend {
   margin-bottom: 8px;
   color: var(--muted);
   font-size: 0.82rem;
   font-weight: 850;
 }
 
-.strategy-list label {
+.strategy-list label,
+.content-option {
   display: grid;
   grid-template-columns: 18px 1fr;
   gap: 10px;
@@ -421,16 +461,19 @@ h2 {
   transition: border-color 180ms cubic-bezier(0.22, 1, 0.36, 1), transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.strategy-list label:has(input:checked) {
+.strategy-list label:has(input:checked),
+.content-option:has(input:checked) {
   border-color: oklch(61% 0.12 153);
   background: oklch(92% 0.045 153);
 }
 
-.strategy-list label:hover {
+.strategy-list label:hover,
+.content-option:hover {
   transform: translateY(-1px);
 }
 
-.strategy-list input {
+.strategy-list input,
+.content-option input {
   width: 16px;
   height: 16px;
   margin-top: 2px;
@@ -438,14 +481,30 @@ h2 {
 }
 
 .strategy-list strong,
-.strategy-list small {
+.strategy-list small,
+.content-option strong,
+.content-option small,
+.content-option em {
   display: block;
 }
 
-.strategy-list small {
+.strategy-list small,
+.content-option small {
   margin-top: 3px;
   color: var(--muted);
   line-height: 1.35;
+}
+
+.content-option em {
+  margin-top: 8px;
+  color: oklch(39% 0.035 111);
+  font-size: 0.78rem;
+  font-style: normal;
+  font-weight: 800;
+}
+
+.content-option[data-locked="true"] {
+  opacity: 0.7;
 }
 
 .primary-button,
@@ -507,6 +566,79 @@ h2 {
   min-height: 58px;
   padding: 13px 14px;
   background: var(--surface);
+}
+
+.subscription-list,
+.upgrade-list {
+  display: grid;
+  gap: 8px;
+}
+
+.subscription-card,
+.upgrade-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: oklch(96% 0.012 103);
+}
+
+.subscription-card[data-active="true"] {
+  border-color: oklch(58% 0.12 153);
+  background: oklch(92% 0.045 153);
+}
+
+.subscription-card h3,
+.upgrade-card h3 {
+  margin: 0 0 4px;
+  font-size: 0.94rem;
+}
+
+.upgrade-card h3 span {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.subscription-card p,
+.upgrade-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+.subscription-card span {
+  display: block;
+  margin-top: 7px;
+  color: oklch(38% 0.035 111);
+  font-size: 0.78rem;
+  font-weight: 820;
+}
+
+.subscription-card button,
+.upgrade-card button {
+  min-width: 96px;
+  min-height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 0.8rem;
+  font-weight: 850;
+}
+
+.subscription-card[data-active="true"] button {
+  background: oklch(25% 0.035 153);
+  color: oklch(91% 0.08 153);
+}
+
+.upgrade-card button:disabled,
+.subscription-card button:disabled {
+  color: var(--muted);
+  cursor: default;
 }
 
 .stat-row span,
@@ -647,8 +779,10 @@ h2 {
 }
 
 @media (max-width: 860px) {
+  .progression-panel,
   .creator-studio,
   .dashboard,
+  .economy-grid,
   .lower-grid {
     grid-template-columns: 1fr;
   }
@@ -694,8 +828,14 @@ h2 {
   .feed-panel,
   .agents-panel,
   .leaderboard-panel,
+  .subscriptions-panel,
+  .upgrades-panel,
   .avatar-panel,
   .customizer-panel {
+    padding: 12px;
+  }
+
+  .progression-panel {
     padding: 12px;
   }
 
@@ -725,5 +865,15 @@ h2 {
 
   .level-block {
     grid-column: auto;
+  }
+
+  .subscription-card,
+  .upgrade-card {
+    grid-template-columns: 1fr;
+  }
+
+  .subscription-card button,
+  .upgrade-card button {
+    width: 100%;
   }
 }

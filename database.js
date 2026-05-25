@@ -34,14 +34,21 @@ export async function upsertPlayer(id, patch) {
     name: "AI Creator",
     username: "",
     day: 1,
+    week: 1,
     money: 300,
+    credits: 40,
     hype: 12,
     rep: 10,
     energy: 100,
     xp: 0,
     level: 1,
     viral: 38,
+    portfolio: 0,
+    selectedContent: "trend",
+    activeSubs: [],
+    suspendedSubs: [],
     ownedAgents: [],
+    skills: { prompting: 1, taste: 1, marketing: 1, ops: 1 },
     character: {
       gender: "neutral",
       skin: "warm",
@@ -56,6 +63,7 @@ export async function upsertPlayer(id, patch) {
   db.players[key] = {
     ...current,
     ...patch,
+    skills: { ...current.skills, ...(patch.skills || {}) },
     character: { ...current.character, ...(patch.character || {}) },
     updatedAt: new Date().toISOString()
   };
@@ -72,7 +80,14 @@ export async function savePlayerState(id, state) {
 }
 
 export function updateLeaderboard(player) {
-  const score = Math.round(player.money + player.hype * 12 + player.rep * 10 + player.level * 80);
+  const score = Math.round(
+    (player.money || 0) +
+    (player.hype || 0) * 12 +
+    (player.rep || 0) * 10 +
+    (player.level || 1) * 80 +
+    (player.portfolio || 0) * 40 +
+    (player.credits || 0) * 0.4
+  );
   const existing = db.leaderboard.filter((item) => item.id !== player.id);
 
   db.leaderboard = [
